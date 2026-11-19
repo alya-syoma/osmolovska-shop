@@ -1,0 +1,43 @@
+<section class="collection-page">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="label">Works</span>
+        <h1>{{ collection.title }}</h1>
+      </div>
+      {%- if collection.description != blank -%}<div class="rte">{{ collection.description }}</div>{%- endif -%}
+    </div>
+
+    {%- if section.settings.show_series and section.settings.series_menu != blank -%}
+      <div class="filters">
+        {%- for link in section.settings.series_menu.links -%}
+          <a class="chip{% if link.active %} active{% endif %}" href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- paginate collection.products by section.settings.per_page -%}
+      <div class="works">
+        {%- for product in collection.products -%}
+          {% render 'product-card', product: product %}
+        {%- else -%}
+          <p class="empty">No works here yet.</p>
+        {%- endfor -%}
+      </div>
+      {%- if paginate.pages > 1 -%}
+        <nav class="pagination" aria-label="Pages">{{ paginate | default_pagination }}</nav>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    { "type": "range", "id": "per_page", "label": "Works per page", "min": 8, "max": 48, "step": 4, "default": 24 },
+    { "type": "checkbox", "id": "show_series", "label": "Show series links", "default": true },
+    { "type": "link_list", "id": "series_menu", "label": "Series menu" }
+  ]
+}
+{% endschema %}

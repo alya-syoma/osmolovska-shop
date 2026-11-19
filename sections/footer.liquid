@@ -1,0 +1,39 @@
+<footer class="site-footer">
+  <div class="wrap foot">
+    <span class="logo">{{ section.settings.logo_first }} <span>{{ section.settings.logo_second }}</span></span>
+    <nav class="foot-links" aria-label="Footer">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+    <div class="foot-social">
+      {%- if section.settings.instagram != blank -%}<a href="{{ section.settings.instagram }}" target="_blank" rel="noopener">Instagram</a>{%- endif -%}
+      {%- if section.settings.threads != blank -%}<a href="{{ section.settings.threads }}" target="_blank" rel="noopener">Threads</a>{%- endif -%}
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+    {%- if section.settings.show_payment_icons -%}
+      <ul class="payment-icons" aria-label="Payment methods">
+        {%- for type in shop.enabled_payment_types -%}
+          <li>{{ type | payment_type_svg_tag }}</li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "footer-section",
+  "settings": [
+    { "type": "text", "id": "logo_first", "label": "Logo text", "default": "Osmolovska" },
+    { "type": "text", "id": "logo_second", "label": "Logo accent (italic)", "default": "Art" },
+    { "type": "link_list", "id": "menu", "label": "Footer menu", "default": "footer" },
+    { "type": "url", "id": "instagram", "label": "Instagram link" },
+    { "type": "url", "id": "threads", "label": "Threads link" },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true }
+  ]
+}
+{% endschema %}

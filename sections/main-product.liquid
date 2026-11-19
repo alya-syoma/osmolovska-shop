@@ -1,0 +1,103 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign size = product.metafields.custom.size.value
+  assign year = product.metafields.custom.year.value
+  assign medium = product.metafields.custom.medium.value | default: product.type
+-%}
+<section class="product">
+  <div class="wrap product-grid">
+    <div class="product-media">
+      {%- for media in product.media -%}
+        {%- if forloop.first -%}{%- assign load = 'eager' -%}{%- else -%}{%- assign load = 'lazy' -%}{%- endif -%}
+        {%- if media.media_type == 'image' -%}
+          <a class="product-photo" href="{{ media | image_url: width: 2400 }}" data-zoom>
+            {{ media | image_url: width: 1400 | image_tag: alt: media.alt, loading: load, sizes: '(max-width: 900px) 100vw, 58vw' }}
+          </a>
+        {%- else -%}
+          {{ media | media_tag }}
+        {%- endif -%}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+      {%- endfor -%}
+    </div>
+
+    <div class="product-info">
+      {%- if product.collections.first -%}<span class="label">{{ product.collections.first.title }}</span>{%- endif -%}
+      <h1>{{ product.title }}</h1>
+      <dl class="specs">
+        {%- if medium != blank -%}<div><dt>Medium</dt><dd>{{ medium }}</dd></div>{%- endif -%}
+        {%- if size != blank -%}<div><dt>Size</dt><dd>{{ size }}</dd></div>{%- endif -%}
+        {%- if year != blank -%}<div><dt>Year</dt><dd>{{ year }}</dd></div>{%- endif -%}
+      </dl>
+
+      <div class="product-price" data-price>
+        {%- if current_variant.available -%}
+          {{ current_variant.price | money }}
+          {%- if current_variant.compare_at_price > current_variant.price -%}<s>{{ current_variant.compare_at_price | money }}</s>{%- endif -%}
+        {%- else -%}
+          <span class="badge badge-sold">Sold</span>
+        {%- endif -%}
+      </div>
+
+      {%- if current_variant.inventory_management == 'shopify' and current_variant.inventory_quantity > 0 and current_variant.inventory_quantity <= section.settings.low_stock -%}
+        <p class="stock">Only {{ current_variant.inventory_quantity }} left</p>
+      {%- endif -%}
+
+      {%- form 'product', product, class: 'product-form', data-product-form: '' -%}
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            <label class="option">
+              <span>{{ option.name }}</span>
+              <select name="options[{{ option.name | escape }}]" data-option>
+                {%- for value in option.values -%}
+                  <option value="{{ value | escape }}"{% if option.selected_value == value %} selected{% endif %}>{{ value }}</option>
+                {%- endfor -%}
+              </select>
+            </label>
+          {%- endfor -%}
+        {%- endunless -%}
+        <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id>
+        <button class="btn btn-ink btn-wide" type="submit" name="add"{% unless current_variant.available %} disabled{% endunless %} data-add>
+          {%- if current_variant.available -%}{{ section.settings.add_label }}{%- else -%}Sold{%- endif -%}
+        </button>
+        <p class="form-error" data-form-error hidden></p>
+      {%- endform -%}
+
+      {%- unless current_variant.available -%}
+        {%- if section.settings.sold_link != blank -%}
+          <p class="sold-note">{{ section.settings.sold_text }} <a href="{{ section.settings.sold_link }}">{{ section.settings.sold_link_label }}</a></p>
+        {%- endif -%}
+      {%- endunless -%}
+
+      <div class="rte product-desc">{{ product.description }}</div>
+
+      <ul class="assurances">
+        {%- if current_variant.requires_shipping -%}
+          <li>{{ section.settings.shipping_note }}</li>
+        {%- else -%}
+          <li>{{ section.settings.digital_note }}</li>
+        {%- endif -%}
+        {%- if section.settings.extra_note != blank -%}<li>{{ section.settings.extra_note }}</li>{%- endif -%}
+      </ul>
+    </div>
+  </div>
+  <script type="application/json" data-product-json>
+    {"variants": {{ product.variants | json }}, "options": {{ product.options | json }}}
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+    { "type": "text", "id": "add_label", "label": "Add to cart button", "default": "Add to cart" },
+    { "type": "range", "id": "low_stock", "label": "Show \"Only N left\" from", "min": 1, "max": 20, "step": 1, "default": 10 },
+    { "type": "text", "id": "shipping_note", "label": "Note for physical works", "default": "Ships worldwide, insured and tracked." },
+    { "type": "text", "id": "digital_note", "label": "Note for digital products", "default": "Instant access by email after payment." },
+    { "type": "text", "id": "extra_note", "label": "Extra note", "default": "Signed by the artist, with a certificate of authenticity." },
+    { "type": "text", "id": "sold_text", "label": "Text under sold works", "default": "This work has found its home." },
+    { "type": "text", "id": "sold_link_label", "label": "Link label", "default": "Commission a similar painting" },
+    { "type": "url", "id": "sold_link", "label": "Link" }
+  ]
+}
+{% endschema %}

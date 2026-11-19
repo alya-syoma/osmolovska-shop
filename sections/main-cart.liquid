@@ -1,0 +1,52 @@
+<section class="cart-page">
+  <div class="wrap narrow">
+    <h1>Your cart</h1>
+    {%- if cart.item_count > 0 -%}
+      <form action="{{ routes.cart_url }}" method="post" class="cart-form">
+        <ul class="cart-items">
+          {%- for item in cart.items -%}
+            <li class="cart-item">
+              <a href="{{ item.url }}" class="cart-thumb">
+                {%- if item.image -%}{{ item.image | image_url: width: 240 | image_tag: alt: item.title }}{%- endif -%}
+              </a>
+              <div class="cart-info">
+                <a href="{{ item.url }}"><b>{{ item.product.title }}</b></a>
+                {%- unless item.product.has_only_default_variant -%}<small>{{ item.variant.title }}</small>{%- endunless -%}
+                {%- for discount in item.line_level_discount_allocations -%}<small>{{ discount.discount_application.title }}</small>{%- endfor -%}
+                <a class="cart-remove" href="{{ item.url_to_remove }}">Remove</a>
+              </div>
+              <label class="cart-qty">
+                <span class="visually-hidden">Quantity</span>
+                <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="Quantity for {{ item.product.title | escape }}">
+              </label>
+              <div class="cart-price">{{ item.final_line_price | money }}</div>
+            </li>
+          {%- endfor -%}
+        </ul>
+        <div class="cart-summary">
+          {%- if section.settings.show_note -%}
+            <label class="cart-note"><span>Note for the artist</span><textarea name="note" rows="3">{{ cart.note }}</textarea></label>
+          {%- endif -%}
+          <p class="cart-total">Subtotal <b>{{ cart.total_price | money_with_currency }}</b></p>
+          <p class="muted">Shipping and taxes are calculated at checkout.</p>
+          <div class="cart-actions">
+            <button class="btn btn-line-dark" type="submit" name="update">Update</button>
+            <button class="btn btn-ink" type="submit" name="checkout">Check out</button>
+          </div>
+        </div>
+      </form>
+    {%- else -%}
+      <p class="empty">Your cart is empty.</p>
+      <a class="btn btn-ink" href="{{ routes.all_products_collection_url }}">See available works</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": [
+    { "type": "checkbox", "id": "show_note", "label": "Allow a note to the artist", "default": true }
+  ]
+}
+{% endschema %}

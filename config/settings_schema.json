@@ -1,0 +1,30 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Osmolovska",
+    "theme_version": "0.1.0",
+    "theme_author": "nest.a.s",
+    "theme_documentation_url": "https://github.com/alya-syoma/osmolovska-shop",
+    "theme_support_url": "https://www.threads.com/@nest.a.s"
+  },
+  {
+    "name": "Colours",
+    "settings": [
+      { "type": "color", "id": "color_ink", "label": "Ink (dark background)", "default": "#141113" },
+      { "type": "color", "id": "color_wall", "label": "Wall (light background)", "default": "#F7F5F2" },
+      { "type": "color", "id": "color_petal", "label": "Petal (accent on dark)", "default": "#E8889B" },
+      { "type": "color", "id": "color_petal_deep", "label": "Petal deep (accent on light)", "default": "#A8445A" }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [{ "type": "image_picker", "id": "favicon", "label": "Favicon" }]
+  },
+  {
+    "name": "Credit",
+    "settings": [
+      { "type": "text", "id": "credit_text", "label": "Floating credit label", "info": "Leave empty to hide it." },
+      { "type": "url", "id": "credit_url", "label": "Credit link" }
+    ]
+  }
+]

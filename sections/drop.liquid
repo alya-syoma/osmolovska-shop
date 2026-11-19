@@ -1,0 +1,63 @@
+{%- comment -%}
+  Drop announcement with a live countdown. Before the start time it shows the countdown
+  and a sign-up form; after it, the button to the drop collection.
+{%- endcomment -%}
+<section class="drop" data-drop data-start="{{ section.settings.start }}">
+  <div class="wrap drop-grid">
+    <div class="drop-img">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1200 | image_tag: alt: section.settings.heading, loading: 'lazy' }}
+      {%- elsif section.settings.collection.featured_image -%}
+        {{ section.settings.collection.featured_image | image_url: width: 1200 | image_tag: alt: section.settings.heading, loading: 'lazy' }}
+      {%- else -%}
+        <img src="{{ 'w-dahlia.jpg' | asset_url }}" alt="" loading="lazy" width="552" height="690">
+      {%- endif -%}
+    </div>
+    <div class="drop-body">
+      <span class="label">{{ section.settings.label }}</span>
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.text }}</p>
+
+      <div class="countdown" data-countdown aria-live="polite">
+        <div><b data-d>00</b><span>days</span></div>
+        <div><b data-h>00</b><span>hours</span></div>
+        <div><b data-m>00</b><span>min</span></div>
+        <div><b data-s>00</b><span>sec</span></div>
+      </div>
+      <p class="drop-when" data-drop-when></p>
+
+      <div data-drop-before>
+        {%- form 'customer', class: 'collect-form collect-form--light' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter,drop-alert">
+          {%- if form.posted_successfully? -%}
+            <p class="form-note" role="status">You're in. We'll email you when it opens.</p>
+          {%- else -%}
+            <input type="email" name="contact[email]" required placeholder="Email me when it opens" aria-label="Email address" autocomplete="email">
+            <button class="btn btn-ink" type="submit">Notify me</button>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+      <div data-drop-after hidden>
+        {%- if section.settings.collection != blank -%}
+          <a class="btn btn-ink" href="{{ section.settings.collection.url }}">{{ section.settings.open_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Drop countdown",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Small label", "default": "Next drop" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Limited prints, signed and numbered" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "50 prints of each painting. When they're gone, they're gone." },
+    { "type": "text", "id": "start", "label": "Start date and time", "info": "Format: 2026-12-05T18:00:00-05:00 (the last part is the time zone; -05:00 is New York in winter)", "default": "2026-12-05T18:00:00-05:00" },
+    { "type": "collection", "id": "collection", "label": "Drop collection" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "open_label", "label": "Button when open", "default": "Shop the drop" }
+  ],
+  "presets": [{ "name": "Drop countdown" }]
+}
+{% endschema %}

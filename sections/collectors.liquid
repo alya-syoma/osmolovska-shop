@@ -1,0 +1,30 @@
+<section class="collect" id="collectors">
+  <div class="wrap">
+    <span class="label">{{ section.settings.label }}</span>
+    <h2>{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.text }}</p>
+    {%- form 'customer', class: 'collect-form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter,collectors">
+      {%- if form.posted_successfully? -%}
+        <p class="form-note" role="status">{{ section.settings.success }}</p>
+      {%- else -%}
+        <input type="email" name="contact[email]" required placeholder="Your email" aria-label="Email address" autocomplete="email">
+        <button class="btn btn-petal" type="submit">{{ section.settings.button }}</button>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collectors' list",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Small label", "default": "Collectors' list" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "See new works first" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Subscribers get early access to every drop, before it opens to everyone." },
+    { "type": "text", "id": "button", "label": "Button", "default": "Join" },
+    { "type": "text", "id": "success", "label": "Thank-you message", "default": "Thank you! You are on the list." }
+  ],
+  "presets": [{ "name": "Collectors' list" }]
+}
+{% endschema %}

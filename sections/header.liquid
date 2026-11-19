@@ -1,0 +1,53 @@
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="{{ routes.root_url }}" class="logo">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 400 | image_tag: alt: shop.name, class: 'logo-img', loading: 'eager' }}
+      {%- else -%}
+        {{ section.settings.logo_first }} <span>{{ section.settings.logo_second }}</span>
+      {%- endif -%}
+    </a>
+
+    <nav class="menu" aria-label="Main">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <div class="nav-icons">
+      <a href="{{ routes.search_url }}" class="icon-link" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      </a>
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{{ routes.account_url }}" class="icon-link" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+        </a>
+      {%- endif -%}
+      <a href="{{ routes.cart_url }}" class="icon-link cart-link" aria-label="Cart, {{ cart.item_count }} items">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="cart-count" data-cart-count{% if cart.item_count == 0 %} hidden{% endif %}>{{ cart.item_count }}</span>
+      </a>
+      <button class="icon-link menu-toggle" type="button" aria-label="Menu" aria-expanded="false" data-menu-toggle>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-menu" aria-label="Mobile" hidden data-mobile-menu>
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {%- endfor -%}
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "header-section",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo image (optional)" },
+    { "type": "text", "id": "logo_first", "label": "Logo text", "default": "Osmolovska" },
+    { "type": "text", "id": "logo_second", "label": "Logo accent (italic)", "default": "Art" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,44 @@
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-img">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1000 | image_tag: alt: section.settings.heading, loading: 'lazy' }}
+      {%- else -%}
+        <img src="{{ 'about.jpg' | asset_url }}" alt="The artist in her studio" loading="lazy" width="975" height="1300">
+      {%- endif -%}
+      <div class="inset">
+        {%- if section.settings.inset != blank -%}
+          {{ section.settings.inset | image_url: width: 500 | image_tag: alt: '', loading: 'lazy' }}
+        {%- else -%}
+          <img src="{{ 'studio-cat.jpg' | asset_url }}" alt="" loading="lazy" width="500" height="500">
+        {%- endif -%}
+      </div>
+    </div>
+    <div>
+      <span class="label">{{ section.settings.label }}</span>
+      <h2>{{ section.settings.heading }}</h2>
+      <div class="rte">{{ section.settings.text }}</div>
+      {%- if section.settings.quote != blank -%}<blockquote class="quote">{{ section.settings.quote }}</blockquote>{%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a class="btn btn-ink" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About the artist",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Main photo" },
+    { "type": "image_picker", "id": "inset", "label": "Small photo" },
+    { "type": "text", "id": "label", "label": "Small label", "default": "The artist" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Painted petal by petal" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Tell collectors who you are, how you work and what draws you to flowers.</p>" },
+    { "type": "text", "id": "quote", "label": "Quote" },
+    { "type": "text", "id": "button_label", "label": "Button" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "About the artist" }]
+}
+{% endschema %}

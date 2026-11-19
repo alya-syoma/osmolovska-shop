@@ -1,0 +1,25 @@
+<section class="collection-page">
+  <div class="wrap">
+    <h1>Search</h1>
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search-form">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search works" aria-label="Search">
+      <input type="hidden" name="type" value="product">
+      <button class="btn btn-ink" type="submit">Search</button>
+    </form>
+    {%- if search.performed -%}
+      {%- paginate search.results by 24 -%}
+        <div class="works">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}{% render 'product-card', product: item %}{%- endif -%}
+          {%- else -%}
+            <p class="empty">Nothing found for “{{ search.terms | escape }}”.</p>
+          {%- endfor -%}
+        </div>
+        {%- if paginate.pages > 1 -%}<nav class="pagination" aria-label="Pages">{{ paginate | default_pagination }}</nav>{%- endif -%}
+      {%- endpaginate -%}
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{ "name": "Search", "settings": [] }
+{% endschema %}

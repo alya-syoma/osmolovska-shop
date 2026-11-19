@@ -1,0 +1,38 @@
+{%- comment -%}
+  Renders one artwork card.
+  Accepts: product (required)
+{%- endcomment -%}
+{%- liquid
+  assign size = product.metafields.custom.size.value
+  assign is_digital = false
+  unless product.selected_or_first_available_variant.requires_shipping
+    assign is_digital = true
+  endunless
+-%}
+<article class="work">
+  <a class="frame" href="{{ product.url }}">
+    {%- if product.featured_media -%}
+      {{ product.featured_media | image_url: width: 800 | image_tag: alt: product.title, loading: 'lazy', sizes: '(max-width: 520px) 50vw, (max-width: 1000px) 33vw, 25vw' }}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+    {%- endif -%}
+    {%- unless product.available -%}<span class="badge badge-sold">Sold</span>{%- endunless -%}
+    {%- if product.available and product.compare_at_price > product.price -%}<span class="badge">Drop price</span>{%- endif -%}
+  </a>
+  <div class="meta">
+    <div>
+      <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+      <small>
+        {%- if size != blank -%}{{ size }}{%- elsif product.type != blank -%}{{ product.type }}{%- endif -%}
+        {%- if is_digital %} · digital{% endif -%}
+      </small>
+    </div>
+    <div class="price">
+      {%- if product.available -%}
+        {%- if product.price_varies -%}from {% endif -%}{{ product.price | money }}
+      {%- else -%}
+        <span class="muted">Sold</span>
+      {%- endif -%}
+    </div>
+  </div>
+</article>
