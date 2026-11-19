@@ -25,13 +25,8 @@
         {%- for product in collection.products limit: section.settings.limit -%}
           {% render 'product-card', product: product %}
         {%- endfor -%}
-      {%- else -%}
-        {%- for i in (1..4) -%}
-          <article class="work">
-            <div class="frame">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</div>
-            <div class="meta"><div><h3>Artwork title</h3><small>Oil on canvas</small></div><div class="price">$0</div></div>
-          </article>
-        {%- endfor -%}
+      {%- elsif request.design_mode -%}
+        <p class="editor-hint">Choose a collection with products in this section's settings. Visitors don't see this message.</p>
       {%- endif -%}
     </div>
 

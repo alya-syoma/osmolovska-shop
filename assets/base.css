@@ -17,6 +17,7 @@ em{font-style:italic}
 .center{text-align:center}
 .muted{color:var(--muted)}
 .empty{color:var(--muted);padding:40px 0}
+.editor-hint{grid-column:1/-1;padding:40px;border:1px dashed var(--line);text-align:center;color:var(--muted)}
 .label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 28px;border-radius:2px;font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;transition:background .3s,color .3s}
 .btn:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--petal);outline-offset:3px}
@@ -52,7 +53,7 @@ em{font-style:italic}
 .mobile-menu a{padding:10px 0;font-size:18px;font-family:var(--display)}
 
 /* intro */
-.intro{min-height:100vh;min-height:100svh;background:var(--ink);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 20px 40px;overflow:hidden}
+.intro{min-height:calc(100vh - 70px);min-height:calc(100svh - 70px);background:var(--ink);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 20px 40px;overflow:hidden}
 .intro .label{color:var(--petal);opacity:0;animation:rise 1s .2s ease forwards}
 .triptych{display:flex;align-items:center;justify-content:center;gap:clamp(12px,2.4vw,32px);margin-top:28px;height:min(56vh,560px)}
 .triptych img{height:84%;width:auto;aspect-ratio:3/4;object-fit:cover;opacity:0;animation:rise 1.4s ease forwards;box-shadow:0 30px 60px rgba(0,0,0,.5)}
@@ -67,6 +68,7 @@ em{font-style:italic}
 .intro-enter i{width:1px;height:42px;background:linear-gradient(var(--petal),transparent);animation:drip 2.2s ease-in-out infinite}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.password{min-height:100vh;min-height:100svh}
 .password .intro-name{margin-top:0;font-size:clamp(44px,8vw,110px)}
 .password .collect-form{margin-top:32px;width:100%}
 .password-login{margin-top:28px;color:var(--muted-dark);font-size:14px}
