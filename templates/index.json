@@ -1,44 +1,223 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "intro": { "type": "intro", "settings": {} },
-    "works": { "type": "featured-works", "settings": {} },
-    "drop": { "type": "drop", "disabled": true, "settings": {} },
+    "intro": {
+      "type": "intro",
+      "settings": {
+        "label": "Hyperrealist oil paintings",
+        "name_first": "Osmolovska",
+        "name_second": "Art",
+        "tagline": "Flowers, painted larger than life.",
+        "enter_label": "Enter the gallery"
+      }
+    },
+    "works": {
+      "type": "featured-works",
+      "settings": {
+        "label": "Available works",
+        "heading": "Latest originals",
+        "text": "Each painting is a one-of-a-kind original in oil on canvas.",
+        "collection": "originals",
+        "limit": 8,
+        "button_label": "View all works"
+      }
+    },
+    "drop": {
+      "type": "drop",
+      "disabled": true,
+      "settings": {
+        "label": "Next drop",
+        "heading": "Limited prints, signed and numbered",
+        "text": "50 prints of each painting. When they're gone, they're gone.",
+        "start": "2026-12-05T18:00:00-05:00",
+        "collection": "",
+        "open_label": "Shop the drop"
+      }
+    },
     "rooms": {
       "type": "rooms",
       "blocks": {
-        "r1": { "type": "room", "settings": { "title": "Living room", "fallback": "room-1.jpg" } },
-        "r2": { "type": "room", "settings": { "title": "Library", "fallback": "room-2.jpg" } },
-        "r3": { "type": "room", "settings": { "title": "Lounge", "fallback": "room-3.jpg" } },
-        "r4": { "type": "room", "settings": { "title": "Study", "fallback": "room-4.jpg" } },
-        "r5": { "type": "room", "settings": { "title": "Hallway", "fallback": "room-5.jpg" } },
-        "r6": { "type": "room", "settings": { "title": "Reading corner", "fallback": "room-6.jpg" } }
+        "r1": {
+          "type": "room",
+          "settings": {
+            "title": "Living room",
+            "fallback": "room-1.jpg"
+          }
+        },
+        "r2": {
+          "type": "room",
+          "settings": {
+            "title": "Library",
+            "fallback": "room-2.jpg"
+          }
+        },
+        "r3": {
+          "type": "room",
+          "settings": {
+            "title": "Lounge",
+            "fallback": "room-3.jpg"
+          }
+        },
+        "r4": {
+          "type": "room",
+          "settings": {
+            "title": "Study",
+            "fallback": "room-4.jpg"
+          }
+        },
+        "r5": {
+          "type": "room",
+          "settings": {
+            "title": "Hallway",
+            "fallback": "room-5.jpg"
+          }
+        },
+        "r6": {
+          "type": "room",
+          "settings": {
+            "title": "Reading corner",
+            "fallback": "room-6.jpg"
+          }
+        }
       },
-      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6"],
-      "settings": {}
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
+      ],
+      "settings": {
+        "label": "In your room",
+        "heading": "See it on your wall",
+        "text": "Large botanicals change a room. Switch between interiors to see the scale."
+      }
     },
     "closeup": {
       "type": "closeup",
       "blocks": {
-        "d1": { "type": "detail", "settings": { "title": "Peony", "fallback": "detail-peony.jpg" } },
-        "d2": { "type": "detail", "settings": { "title": "Lotus", "fallback": "detail-lotus.jpg" } },
-        "d3": { "type": "detail", "settings": { "title": "Papaya", "fallback": "detail-papaya.jpg" } }
+        "d1": {
+          "type": "detail",
+          "settings": {
+            "title": "Peony",
+            "caption": "detail, oil on canvas",
+            "fallback": "detail-peony.jpg"
+          }
+        },
+        "d2": {
+          "type": "detail",
+          "settings": {
+            "title": "Lotus",
+            "caption": "detail, oil on canvas",
+            "fallback": "detail-lotus.jpg"
+          }
+        },
+        "d3": {
+          "type": "detail",
+          "settings": {
+            "title": "Papaya",
+            "caption": "detail, oil on canvas",
+            "fallback": "detail-papaya.jpg"
+          }
+        }
       },
-      "block_order": ["d1", "d2", "d3"],
-      "settings": {}
+      "block_order": [
+        "d1",
+        "d2",
+        "d3"
+      ],
+      "settings": {
+        "label": "Up close",
+        "heading": "Look closer. It's paint.",
+        "text": "Every vein and drop of dew is built up in thin layers of oil, brush by brush."
+      }
     },
-    "about": { "type": "about", "settings": {} },
+    "about": {
+      "type": "about",
+      "settings": {
+        "label": "The artist",
+        "heading": "Painted petal by petal",
+        "text": "<p>Tell collectors who you are, how you work and what draws you to flowers.</p>",
+        "quote": "",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
     "commissions": {
       "type": "commissions",
       "blocks": {
-        "s1": { "type": "step", "settings": { "title": "Brief", "text": "Tell me about the flower, size and room." } },
-        "s2": { "type": "step", "settings": { "title": "Sketch", "text": "You approve a composition and palette." } },
-        "s3": { "type": "step", "settings": { "title": "Painting", "text": "I paint it, with progress photos along the way." } },
-        "s4": { "type": "step", "settings": { "title": "Delivery", "text": "Insured shipping to your door." } }
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "Brief",
+            "text": "Tell me about the flower, size and room."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "Sketch",
+            "text": "You approve a composition and palette."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "Painting",
+            "text": "I paint it, with progress photos along the way."
+          }
+        },
+        "s4": {
+          "type": "step",
+          "settings": {
+            "title": "Delivery",
+            "text": "Insured shipping to your door."
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3", "s4"],
-      "settings": {}
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {
+        "label": "Commissions",
+        "heading": "A painting made for you",
+        "text": "Choose a flower, a size and a palette. I paint it for your space.",
+        "button_label": "Start a commission",
+        "button_link": "",
+        "note": ""
+      }
     },
-    "collectors": { "type": "collectors", "settings": {} }
+    "collectors": {
+      "type": "collectors",
+      "settings": {
+        "label": "Collectors' list",
+        "heading": "See new works first",
+        "text": "Subscribers get early access to every drop, before it opens to everyone.",
+        "button": "Join",
+        "success": "Thank you! You are on the list."
+      }
+    }
   },
-  "order": ["intro", "works", "drop", "rooms", "closeup", "about", "commissions", "collectors"]
+  "order": [
+    "intro",
+    "works",
+    "drop",
+    "rooms",
+    "closeup",
+    "about",
+    "commissions",
+    "collectors"
+  ]
 }
