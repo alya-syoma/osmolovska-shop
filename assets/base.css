@@ -56,7 +56,7 @@ em{font-style:italic}
 .intro{min-height:calc(100vh - 70px);min-height:calc(100svh - 70px);background:var(--ink);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 20px 40px;overflow:hidden}
 .intro .label{color:var(--petal);opacity:0;animation:rise 1s .2s ease forwards}
 .triptych{display:flex;align-items:center;justify-content:center;gap:clamp(12px,2.4vw,32px);margin-top:28px;height:min(56vh,560px)}
-.triptych img{height:84%;width:auto;aspect-ratio:3/4;object-fit:cover;opacity:0;animation:rise 1.4s ease forwards;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+.triptych img{height:84%;width:auto;max-width:none;aspect-ratio:3/4;object-fit:cover;opacity:0;animation:rise 1.4s ease forwards;box-shadow:0 30px 60px rgba(0,0,0,.5)}
 .triptych img:nth-child(1){animation-delay:.4s;clip-path:inset(0 1% 4% 2.5%)}
 .triptych img:nth-child(2){height:100%;animation-delay:.15s}
 .triptych img:nth-child(3){animation-delay:.65s;clip-path:inset(0 1% 4% 2.5%)}
@@ -93,7 +93,7 @@ section{padding:100px 0}
 .works + .center{margin-top:52px}
 .work{display:flex;flex-direction:column}
 .work .frame{position:relative;display:block;background:var(--paper);padding:14px;box-shadow:0 1px 0 var(--line),0 18px 40px -22px rgba(20,17,19,.35);overflow:hidden}
-.work .frame img,.work .frame .placeholder{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.work .frame img,.work .frame .placeholder{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
 .work:hover .frame img{transform:scale(1.04)}
 .work .meta{padding-top:16px;display:flex;justify-content:space-between;gap:12px;align-items:start}
 .work h3{font-size:22px;line-height:1.15}
@@ -114,7 +114,7 @@ section{padding:100px 0}
 .room-side p{color:var(--muted);margin-bottom:28px}
 .room-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .room-tab{display:flex;flex-direction:column;gap:6px;text-align:left;font-size:13px;color:var(--muted)}
-.room-tab img{aspect-ratio:1;object-fit:cover;width:100%;outline:2px solid transparent;outline-offset:2px;transition:outline-color .25s,opacity .25s;opacity:.7}
+.room-tab img{aspect-ratio:1;object-fit:cover;width:100%;height:auto;outline:2px solid transparent;outline-offset:2px;transition:outline-color .25s,opacity .25s;opacity:.7}
 .room-tab.on img{outline-color:var(--ink);opacity:1}
 .room-tab.on{color:var(--text)}
 
@@ -132,9 +132,9 @@ section{padding:100px 0}
 /* about */
 .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:center}
 .about-img{position:relative}
-.about-img > img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top}
+.about-img > img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:top}
 .about-img .inset{position:absolute;right:-36px;bottom:-36px;width:44%;border:10px solid var(--wall)}
-.about-img .inset img{aspect-ratio:1;object-fit:cover;width:100%}
+.about-img .inset img{aspect-ratio:1;object-fit:cover;width:100%;height:auto}
 .about h2{font-size:clamp(38px,4.6vw,60px);margin:14px 0 24px}
 .about .label{color:var(--petal-deep)}
 .about .rte{color:var(--muted);max-width:560px;margin-bottom:24px}
@@ -143,7 +143,7 @@ section{padding:100px 0}
 /* drop */
 .drop{background:var(--paper)}
 .drop-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.drop-img img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.drop-img img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
 .drop .label{color:var(--petal-deep)}
 .drop h2{font-size:clamp(36px,4.4vw,56px);margin:14px 0 16px}
 .drop p{color:var(--muted)}
@@ -206,7 +206,7 @@ section{padding:100px 0}
 .collection-page{padding-top:64px}
 .series-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .series-card{position:relative;display:block;overflow:hidden}
-.series-card img,.series-card .placeholder{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .8s}
+.series-card img,.series-card .placeholder{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;transition:transform .8s}
 .series-card:hover img{transform:scale(1.04)}
 .series-card span{position:absolute;left:0;right:0;bottom:0;padding:40px 18px 16px;background:linear-gradient(transparent,rgba(20,17,19,.85));color:#fff;font-family:var(--display);font-size:26px}
 .search-form{display:flex;gap:8px;margin:20px 0 40px;max-width:560px}
