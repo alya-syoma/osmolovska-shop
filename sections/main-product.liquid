@@ -39,7 +39,9 @@
         {%- endif -%}
       </div>
 
-      {%- if current_variant.inventory_management == 'shopify' and current_variant.inventory_quantity > 0 and current_variant.inventory_quantity <= section.settings.low_stock -%}
+      {%- assign is_original = product.tags | join: ',' | downcase | split: ',' -%}
+      {%- if is_original contains 'original' -%}{%- assign show_stock = false -%}{%- else -%}{%- assign show_stock = true -%}{%- endif -%}
+      {%- if show_stock and current_variant.inventory_management == 'shopify' and current_variant.inventory_quantity > 0 and current_variant.inventory_quantity <= section.settings.low_stock -%}
         <p class="stock">Only {{ current_variant.inventory_quantity }} left</p>
       {%- endif -%}
 
